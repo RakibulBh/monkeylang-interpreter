@@ -1,8 +1,6 @@
 package lexer
 
 import (
-	"fmt"
-
 	"github.com/rakibulbh/monkeylang-interpreter/internal/token"
 )
 
@@ -62,7 +60,6 @@ func (l *Lexer) NextToken() token.Token {
     case '=':
         tok = newToken(token.ASSIGN, l.ch)
     case ';':
-		fmt.Printf("token is a semicolon!\n")
         tok = newToken(token.SEMICOLON, l.ch)
     case '(':
         tok = newToken(token.LPAREN, l.ch)
@@ -72,10 +69,18 @@ func (l *Lexer) NextToken() token.Token {
         tok = newToken(token.COMMA, l.ch)
     case '+':
         tok = newToken(token.PLUS, l.ch)
+	case '-':
+        tok = newToken(token.MINUS, l.ch)
+	case '*':
+        tok = newToken(token.ASTERISK, l.ch)
+	case '/':
+        tok = newToken(token.SLASH, l.ch)
+	case '<':
+        tok = newToken(token.LT, l.ch)
+	case '>':
+		tok = newToken(token.GT, l.ch)
     case '{':
         tok = newToken(token.LBRACE, l.ch)
-    case '}':
-        tok = newToken(token.RBRACE, l.ch)
     case 0:
         tok.Literal = ""
         tok.Type = token.EOF
